@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ui.databinding.FragmentHabitsListBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -16,10 +15,9 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class HabitsListFragment : Fragment() {
 
-    lateinit var adapter: HabitListAdapter
     private var _binding: FragmentHabitsListBinding? = null
     private val binding get() = _binding!!
-    val viewModel: MainViewModel by viewModels()
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,13 +30,17 @@ class HabitsListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = HabitListAdapter()
-
-        binding.habitList.adapter = adapter
-        binding.habitList.layoutManager = LinearLayoutManager(context)
-
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.habitListFlow.collect { list -> adapter.update(list) }
+            viewModel.habitListFlow.collect { list ->
+                binding.habitList.withModels {
+                    list.forEach {
+                        habitItemView {
+                            id("id")
+                            habitItem(it)
+                        }
+                    }
+                }
+            }
         }
     }
 
