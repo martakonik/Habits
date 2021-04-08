@@ -5,6 +5,10 @@ buildscript {
         mavenCentral()
     }
 
+    dependencies {
+        classpath 'com.jakewharton:butterknife-gradle-plugin:10.1.0'
+    }
+
     ext.hilt_version = '2.33-beta'
 
     dependencies {

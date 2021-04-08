@@ -1,28 +1,33 @@
 package com.example.ui
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.HabitItem
+import com.example.ui.databinding.HabitItemBinding
 
 class HabitListAdapter :
     RecyclerView.Adapter<HabitListAdapter.ViewHolder>() {
     private var dataSet: List<HabitItem> = emptyList()
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView = view.findViewById(R.id.textView)
+    inner class ViewHolder(private val binding: HabitItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(habitItem: HabitItem) {
+            binding.habitItem = habitItem
+            binding.executePendingBindings()
+        }
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.habit_item, viewGroup, false)
-        return ViewHolder(view)
+        return ViewHolder(
+            HabitItemBinding.inflate(
+                LayoutInflater.from(viewGroup.context)
+            )
+        )
+
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.textView.text = dataSet[position].toString()
+        viewHolder.bind(dataSet[position])
     }
 
     override fun getItemCount() = dataSet.size
