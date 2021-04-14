@@ -8,8 +8,12 @@ buildscript {
     dependencies {
         classpath 'com.jakewharton:butterknife-gradle-plugin:10.1.0'
     }
-
-    ext.hilt_version = '2.33-beta'
+    ext {
+        hilt_version = '2.33-beta'
+        hiltAndroidXVersion = '1.0.0-alpha02'
+        coroutines = '1.4.3'
+        roomVersion = '2.2.5'
+    }
 
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.0-alpha12"
