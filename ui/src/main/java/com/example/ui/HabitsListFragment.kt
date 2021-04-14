@@ -31,7 +31,8 @@ class HabitsListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.habitListFlow.collect { list ->
+//            viewModel.insert(HabitItem(2, "nowy bazowy2"))
+            viewModel.getListFromDatabase().collect { list ->
                 binding.habitList.withModels {
                     list.forEach {
                         habitItemView {
