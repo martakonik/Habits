@@ -1,4 +1,4 @@
-package com.example.ui
+package com.example.ui.habitlist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.ui.databinding.FragmentHabitsListBinding
+import com.example.ui.habitItemView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -17,7 +18,7 @@ class HabitsListFragment : Fragment() {
 
     private var _binding: FragmentHabitsListBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: HabitListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

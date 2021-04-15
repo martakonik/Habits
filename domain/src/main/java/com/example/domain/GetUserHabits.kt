@@ -11,14 +11,3 @@ class GetUserHabits @Inject constructor(
         return repository.observeHabitsList()
     }
 }
-
-//class SaveUserHabit @Inject constructor(
-//    private val repository: HabitsRepository,
-//) {
-//
-//    fun save(item: HabitItem) {
-//        GlobalScope.launch {
-//            repository.saveHabit(item = item)
-//        }
-//    }
-//}
