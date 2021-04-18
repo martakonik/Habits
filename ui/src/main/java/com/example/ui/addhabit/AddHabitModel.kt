@@ -1,6 +1,6 @@
 package com.example.ui.addhabit
 
-import com.example.domain.HabitItem
+import com.example.domain.data.HabitItem
 import com.example.domain.SaveUserHabit
 import javax.inject.Inject
 

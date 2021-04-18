@@ -4,7 +4,7 @@ import com.example.domain.data.HabitWithStatePerDay
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetUserHabits @Inject constructor(
+class UpdateHabitState @Inject constructor(
     private val repository: HabitsRepository
 ) {
 

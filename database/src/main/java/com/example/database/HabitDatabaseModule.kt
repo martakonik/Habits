@@ -24,7 +24,9 @@ class HabitDatabaseModule {
             appContext,
             HabitDatabase::class.java,
             "habit_database"
-        ).build()
+//        )
+        ).fallbackToDestructiveMigration()
+            .build()
     }
 
 }

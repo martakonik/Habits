@@ -1,28 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
-            name="habitItem"
-            type="com.example.domain.HabitItem" />
+            name="habitWithState"
+            type="com.example.ui.habitlist.HabitListItemViewColkolwiek" />
+
+        <variable
+            name="viewModelItem"
+            type="com.example.ui.habitlist.HabitListItemViewModel" />
+
+        <import type="com.example.ui.StateConverter" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="60dp">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4" />
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{habitItem.name}"
+            android:text="@{habitWithState.habitItem.name}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.4"
             tools:text="@string/hello_blank_fragment" />
+
+        <CheckBox
+            android:id="@+id/checkbox_today"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="@{StateConverter.bindToView(habitWithState.today)}"
+            android:gravity="center"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:onCheckedChanged="@{(compoundButton, checked) -> viewModelItem.checkBoxChecked(compoundButton, checked, habitWithState)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/checkbox_yesterday"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/checkbox_yesterday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="@{StateConverter.bindToView(habitWithState.yesterday)}"
+            android:gravity="center"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:onCheckedChanged="@{(compoundButton, checked) -> viewModelItem.checkBoxChecked(compoundButton, checked, habitWithState)}"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/checkbox_day_before"
+            app:layout_constraintStart_toEndOf="@+id/checkbox_today"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/checkbox_day_before"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="@{StateConverter.bindToView(habitWithState.dayBeforeYesterday)}"
+            android:gravity="center"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:onCheckedChanged="@{(compoundButton, checked) -> viewModelItem.checkBoxChecked(compoundButton, checked, habitWithState)}"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/checkbox_yesterday"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -6,8 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.domain.data.NewHabit
+import com.example.ui.NavigationType
 import com.example.ui.databinding.FragmentAddHabitBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class AddHabitFragment : Fragment() {
@@ -20,12 +26,26 @@ class AddHabitFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAddHabitBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+        binding.newHabit = NewHabit()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.navigationFlow.collect {
+                it.consumeIfExists()?.let { navigationType ->
+                    when (navigationType) {
+                        is NavigationType.NavigateToDirection -> findNavController().navigate(
+                            navigationType.direction
+                        )
+                        NavigationType.PopBackStack -> findNavController().popBackStack()
+                    }
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {

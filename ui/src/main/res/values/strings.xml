@@ -7,4 +7,5 @@
     <string name="text_view_how_often">How often?</string>
     <string name="text_view_name_your_new_habit">Name your new habit</string>
     <string name="fab_add_new">Add new</string>
+    <string name="fab_save">Save</string>
 </resources>

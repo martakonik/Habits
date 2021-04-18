@@ -2,44 +2,58 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.ui.addhabit.AddHabitViewModel" />
+
+        <variable
+            name="newHabit"
+            type="com.example.domain.data.NewHabit" />
+
+        <import type="com.example.ui.Converter"/>
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin_large_16dp">
 
         <TextView
             android:id="@+id/textViewAddNewHabit"
-            android:text="@string/text_view_name_your_new_habit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="@string/text_view_name_your_new_habit"
+            app:layout_constraintBottom_toTopOf="@+id/editTextNewHabitName"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <EditText
             android:id="@+id/editTextNewHabitName"
-            android:inputType="text"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="60dp"
+            android:inputType="text"
+            android:text="@={newHabit.name}"
+            app:layout_constraintBottom_toTopOf="@+id/textViewHowOften"
             app:layout_constraintTop_toBottomOf="@+id/textViewAddNewHabit" />
 
         <TextView
             android:id="@+id/textViewHowOften"
-            android:text="@string/text_view_how_often"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/text_view_how_often"
+            app:layout_constraintBottom_toTopOf="@+id/radioGroup"
             app:layout_constraintTop_toBottomOf="@+id/editTextNewHabitName" />
 
         <RadioGroup
             android:id="@+id/radioGroup"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="60dp"
             android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            android:checkedButton="@={Converter.bindToView(newHabit.habitFrequency)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewHowOften">
 
             <RadioButton
                 android:id="@+id/radioButtonEveryDay"
@@ -60,6 +74,19 @@
                 android:text="@string/radio_button_text_once_a_week" />
 
         </RadioGroup>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/extendedFabAddNewHabit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_margin="@dimen/margin_large_16dp"
+            android:onClick="@{() -> viewModel.saveHabit(newHabit)}"
+            android:text="@string/fab_save"
+            app:icon="@drawable/ic_baseline_add_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

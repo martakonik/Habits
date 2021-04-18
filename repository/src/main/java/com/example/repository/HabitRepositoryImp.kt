@@ -1,8 +1,10 @@
 package com.example.repository
 
 import com.example.database.HabitItemDao
-import com.example.domain.HabitItem
 import com.example.domain.HabitsRepository
+import com.example.domain.data.HabitItem
+import com.example.domain.data.HabitWithStatePerDay
+import com.example.domain.data.StatePerDay
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -14,7 +16,15 @@ class HabitRepositoryImp @Inject constructor(
         habitItemDao.insert(item)
     }
 
-    override fun observeHabitsList(): Flow<List<HabitItem>> {
-        return habitItemDao.getHabitList()
+    override suspend fun updateHabitExecution(item: StatePerDay) {
+        habitItemDao.update(item)
+    }
+
+    override suspend fun insertHabitExecution(item: StatePerDay) {
+        habitItemDao.insert(item)
+    }
+
+    override fun observeHabitsList(): Flow<List<HabitWithStatePerDay>> {
+        return habitItemDao.getHabitWithStatePerDay()
     }
 }
