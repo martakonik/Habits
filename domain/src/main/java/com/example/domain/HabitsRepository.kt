@@ -11,4 +11,5 @@ interface HabitsRepository {
     suspend fun updateHabitExecution(item: StatePerDay)
     suspend fun insertHabitExecution(item: StatePerDay)
     fun observeHabitsList(): Flow<List<HabitWithStatePerDay>>
+    fun getHabit(habitId: Long): Flow<HabitWithStatePerDay>
 }

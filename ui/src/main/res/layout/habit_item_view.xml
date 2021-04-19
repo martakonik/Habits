@@ -13,11 +13,16 @@
             name="viewModelItem"
             type="com.example.ui.habitlist.HabitListItemViewModel" />
 
+        <variable
+            name="navigate"
+            type="com.example.ui.habitlist.Navigate" />
+
         <import type="com.example.ui.util.StateConverter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:onClick="@{() -> navigate.navigateWithId(habitWithState.habitItem.id)}"
         android:layout_height="60dp">
 
         <androidx.constraintlayout.widget.Guideline

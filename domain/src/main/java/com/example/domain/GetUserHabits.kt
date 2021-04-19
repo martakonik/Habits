@@ -11,4 +11,8 @@ class GetUserHabits @Inject constructor(
     fun get(): Flow<List<HabitWithStatePerDay>> {
         return repository.observeHabitsList()
     }
+
+    fun getHabit(habitId: Long): Flow<HabitWithStatePerDay> {
+        return repository.getHabit(habitId)
+    }
 }

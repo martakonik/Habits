@@ -24,4 +24,9 @@ interface HabitItemDao {
 
     @Insert
     suspend fun insert(obj: StatePerDay)
+
+    @Transaction
+    @Query("SELECT * FROM habit_item WHERE id=:id")
+    fun getHabitById(id: Long): Flow<HabitWithStatePerDay>
+
 }

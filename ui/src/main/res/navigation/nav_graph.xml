@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_habitListFragment_to_addHabitFragment"
             app:destination="@id/addHabitFragment" />
+        <action
+            android:id="@+id/action_habitListFragment_to_habitDetailsFragment"
+            app:destination="@id/habitDetailsFragment" />
     </fragment>
 
     <fragment
@@ -20,4 +23,14 @@
         android:name="com.example.ui.addhabit.AddHabitFragment"
         android:label="add_habit_fragment"
         tools:layout="@layout/fragment_add_habit" />
+
+    <fragment
+        android:id="@+id/habitDetailsFragment"
+        android:name="com.example.ui.habitdetails.HabitDetailsFragment"
+        android:label="habit_details_fragment"
+        tools:layout="@layout/fragment_habit_details">
+        <argument
+            android:name="habitId"
+            app:argType="long" />
+    </fragment>
 </navigation>

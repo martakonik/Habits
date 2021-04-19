@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.ui.util.NavigationType
 import com.example.ui.databinding.FragmentHabitsListBinding
 import com.example.ui.habitItemView
 import com.example.ui.habitListHeader
+import com.example.ui.util.NavigationType
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -45,15 +45,19 @@ class HabitsListFragment : Fragment() {
                         }
 
                         list.forEach {
-                             val viewModelPerItem: HabitListItemViewModel by viewModels()
+                            val viewModelPerItem: HabitListItemViewModel by viewModels()
                             habitItemView {
                                 id("id")
                                 habitWithState(it)
                                 viewModelItem(viewModelPerItem)
+                                navigate(object : Navigate {
+                                    override fun navigateWithId(habitId: Long) {
+                                        viewModel.onHabitItemClick(habitId)
+                                    }
+                                })
                             }
                         }
                     }
-
                 }
             }
             launch {

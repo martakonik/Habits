@@ -1,25 +1,40 @@
 package com.example.ui.habitlist
 
 import android.widget.CompoundButton
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.UpdateHabitExecution
 import com.example.domain.data.HabitItem
 import com.example.domain.data.StatePerDay
 import com.example.ui.BaseViewModel
 import com.example.ui.R
-import com.example.ui.util.MINUS_TWO_DAYS_BEFORE
 import com.example.ui.util.MINUS_DAY_YESTERDAY
+import com.example.ui.util.MINUS_TWO_DAYS_BEFORE
+import com.example.ui.util.NavigationType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.threeten.bp.LocalDate
 import javax.inject.Inject
 
+interface Navigate {
+    fun navigateWithId(habitId: Long)
+}
 
 @HiltViewModel
 class HabitListItemViewModel @Inject constructor(
     private val update: UpdateHabitExecution
-) : BaseViewModel() {
+) : ViewModel() {
+
+    fun navigateToHabitDetails(habitId: Long) {
+        //poke do glownego VM z idhabitu by robilo event nav
+//        navigate.navigateWithId(habitId)
+//        navigateTo(
+//            NavigationType.NavigateToDirection(
+//                HabitsListFragmentDirections.actionHabitListFragmentToHabitDetailsFragment(habitId)
+//            )
+//        )
+    }
 
     fun onCheckBoxChecked(
         view: CompoundButton,

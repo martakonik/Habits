@@ -19,4 +19,12 @@ class HabitListViewModel @Inject constructor(
             )
         )
     }
+
+    fun onHabitItemClick(habitId: Long) {
+        navigateTo(
+            NavigationType.NavigateToDirection(
+                HabitsListFragmentDirections.actionHabitListFragmentToHabitDetailsFragment(habitId)
+            )
+        )
+    }
 }

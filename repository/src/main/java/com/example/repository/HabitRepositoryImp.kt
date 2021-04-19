@@ -27,4 +27,8 @@ class HabitRepositoryImp @Inject constructor(
     override fun observeHabitsList(): Flow<List<HabitWithStatePerDay>> {
         return habitItemDao.getHabitWithStatePerDay()
     }
+
+    override fun getHabit(habitId: Long): Flow<HabitWithStatePerDay> {
+        return habitItemDao.getHabitById(habitId)
+    }
 }
