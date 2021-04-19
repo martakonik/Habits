@@ -1,8 +1,8 @@
-package com.example.ui
+package com.example.ui.util
 
-import android.widget.RadioGroup
 import androidx.databinding.InverseMethod
 import com.example.domain.data.HabitFrequency
+import com.example.ui.R
 
 object Converter {
 

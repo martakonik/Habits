@@ -1,4 +1,4 @@
-package com.example.ui
+package com.example.ui.util
 
 import com.example.domain.data.StatePerDay
 

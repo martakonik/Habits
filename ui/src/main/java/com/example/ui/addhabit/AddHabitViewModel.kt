@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.data.HabitItem
 import com.example.domain.data.NewHabit
-import com.example.ui.NavigationType
-import com.example.ui.OneTimeEvent
+import com.example.ui.util.NavigationType
+import com.example.ui.util.OneTimeEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

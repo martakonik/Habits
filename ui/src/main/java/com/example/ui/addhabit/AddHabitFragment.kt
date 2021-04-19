@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.domain.data.NewHabit
-import com.example.ui.NavigationType
+import com.example.ui.util.NavigationType
 import com.example.ui.databinding.FragmentAddHabitBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect

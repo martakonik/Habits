@@ -7,13 +7,13 @@
 
         <variable
             name="habitWithState"
-            type="com.example.ui.habitlist.HabitListItemViewColkolwiek" />
+            type="com.example.ui.habitlist.HabitItemWithRecentStates" />
 
         <variable
             name="viewModelItem"
             type="com.example.ui.habitlist.HabitListItemViewModel" />
 
-        <import type="com.example.ui.StateConverter" />
+        <import type="com.example.ui.util.StateConverter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,7 +47,7 @@
             android:gravity="center"
             android:minWidth="0dp"
             android:minHeight="0dp"
-            android:onCheckedChanged="@{(compoundButton, checked) -> viewModelItem.checkBoxChecked(compoundButton, checked, habitWithState)}"
+            android:onCheckedChanged="@{(compoundButton, checked) -> viewModelItem.onCheckBoxChecked(compoundButton, checked, habitWithState)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/checkbox_yesterday"
             app:layout_constraintHorizontal_chainStyle="spread"
@@ -62,7 +62,7 @@
             android:gravity="center"
             android:minWidth="0dp"
             android:minHeight="0dp"
-            android:onCheckedChanged="@{(compoundButton, checked) -> viewModelItem.checkBoxChecked(compoundButton, checked, habitWithState)}"
+            android:onCheckedChanged="@{(compoundButton, checked) -> viewModelItem.onCheckBoxChecked(compoundButton, checked, habitWithState)}"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/checkbox_day_before"
@@ -77,7 +77,7 @@
             android:gravity="center"
             android:minWidth="0dp"
             android:minHeight="0dp"
-            android:onCheckedChanged="@{(compoundButton, checked) -> viewModelItem.checkBoxChecked(compoundButton, checked, habitWithState)}"
+            android:onCheckedChanged="@{(compoundButton, checked) -> viewModelItem.onCheckBoxChecked(compoundButton, checked, habitWithState)}"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

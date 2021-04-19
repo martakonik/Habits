@@ -24,7 +24,7 @@
             android:id="@+id/textViewToday"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="today"
+            android:text="@string/today"
             android:textAlignment="center"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="yesterday"
+            android:text="@string/yesterday"
             android:gravity="center"
             android:textAlignment="center"
             app:layout_constraintEnd_toStartOf="@+id/textViewDayBeforeYesterday"
@@ -52,7 +52,7 @@
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="day \n before \n yesterday "
+            android:text="@string/day_before_yesterday"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textViewYesterday" />
 

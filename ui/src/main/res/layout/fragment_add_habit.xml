@@ -12,7 +12,7 @@
             name="newHabit"
             type="com.example.domain.data.NewHabit" />
 
-        <import type="com.example.ui.Converter"/>
+        <import type="com.example.ui.util.Converter"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

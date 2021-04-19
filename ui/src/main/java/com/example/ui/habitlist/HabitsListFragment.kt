@@ -8,8 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.domain.data.HabitWithStatePerDay
-import com.example.ui.NavigationType
+import com.example.ui.util.NavigationType
 import com.example.ui.databinding.FragmentHabitsListBinding
 import com.example.ui.habitItemView
 import com.example.ui.habitListHeader
@@ -39,7 +38,7 @@ class HabitsListFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
 //            viewModel.insert(HabitItem(1, "nowy bazowy"))
             launch {
-                viewModel.getListFromDatabaseAndState().collect { list ->
+                viewModel.getListFromDatabaseWithState().collect { list ->
                     binding.habitList.withModels {
                         habitListHeader {
                             id(id)

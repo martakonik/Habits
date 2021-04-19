@@ -1,4 +1,4 @@
-package com.example.ui
+package com.example.ui.util
 
 class OneTimeEvent<T>(private var value: T?) {
 
